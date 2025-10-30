@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa Expenses Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💼 Visa Application Expenses</h1>
+            <div class="summary">
+                <div class="summary-item">
+                    <span class="label">Total (GBP):</span>
+                    <span class="amount" id="totalGBP">£0.00</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Total (LKR):</span>
+                    <span class="amount" id="totalLKR">Rs 0.00</span>
+                </div>
+            </div> <br>
+            <p>Currency conversion rates as of <b><u>30/10/2025</u></b>: <b><u>1 LKR = 0.0025 GBP</u>, <u>1 USD = 0.76 GBP</u></b></p>
+        </header>
+
+        <div class="expenses-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Original Amount</th>
+                        <th>Amount (GBP)</th>
+                        <th>Date</th>
+                        <th>Receipt</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesBody">
+                    <!-- Expenses will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+   <!-- Modal for viewing receipt -->
+<div id="receiptModal" class="modal">
+    <div class="modal-content modal-large">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Receipt</h2>
+        <div class="receipt-viewer" id="receiptViewer">
+            <!-- Content will be dynamically added here -->
+        </div>
+        <button class="download-btn" onclick="downloadReceipt()">
+            <span>⬇</span> Download Receipt
+        </button>
+    </div>
+</div>
+    <!-- Modal for adding expense -->
+    <div id="addExpenseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddExpenseModal()">&times;</span>
+            <h2>Add New Expense</h2>
+            <form id="expenseForm" onsubmit="addExpense(event)">
+                <div class="form-group">
+                    <label>Description:</label>
+                    <input type="text" id="description" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount:</label>
+                    <input type="number" id="amount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Currency:</label>
+                    <select id="currency" required>
+                        <option value="LKR">LKR - Sri Lankan Rupee</option>
+                        <option value="USD">USD - US Dollar</option>
+                        <option value="GBP">GBP - British Pound</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Receipt (Image):</label>
+                    <input type="file" id="receipt" accept="image/*">
+                </div>
+                <button type="submit" class="submit-btn">Add Expense</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

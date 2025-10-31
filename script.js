@@ -26,8 +26,8 @@ let expenses = [
     {
         id: 3,
         description: "Immigration Health Surcharge (IHS) Payment",
-        amount: 1035,
-        currency: "GBP",
+        amount: 1435.70,
+        currency: "USD",
         date: "2025-10-17",
         receipt: "assets/IHS_Payment.pdf"
     },

@@ -26,8 +26,8 @@ let expenses = [
     {
         id: 3,
         description: "Immigration Health Surcharge (IHS) Payment",
-        amount: 1035,
-        currency: "GBP",
+        amount: 1435.70,
+        currency: "USD",
         date: "2025-10-17",
         receipt: "assets/IHS_Payment.pdf"
     },
@@ -135,7 +135,6 @@ function formatDate(dateString) {
     });
 }
 
-// Update totals
 function updateTotals() {
     let totalGBP = 0;
     let totalLKR = 0;
@@ -143,17 +142,16 @@ function updateTotals() {
     expenses.forEach(expense => {
         const gbpAmount = convertToGBP(expense.amount, expense.currency);
         totalGBP += gbpAmount;
-        
-        if (expense.currency === 'LKR') {
-            totalLKR += expense.amount;
-        } else {
-            totalLKR += expense.amount / exchangeRates['LKR'];
-        }
+
+        // Convert GBP to LKR properly
+        const lkrAmount = gbpAmount / exchangeRates['LKR'];
+        totalLKR += lkrAmount;
     });
 
     document.getElementById('totalGBP').textContent = formatCurrency(totalGBP, 'GBP');
     document.getElementById('totalLKR').textContent = formatCurrency(totalLKR, 'LKR');
 }
+
 
 // View receipt in modal - UPDATED to handle PDFs
 function viewReceipt(id) {
